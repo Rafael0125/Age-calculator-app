@@ -1,37 +1,74 @@
 <div class="row">
 
-    <div class="col-4 text-start">
 
-        <label class="fs-5" for="dia">Dia:</label>
-        <input type="text" id="dia" class="form-control" placeholder="Dia" aria-label="dia">
+    <form [formGroup]="formulario" novalidate (ngSubmit)="recuperarIdade()" class="row">
+        <div class="form-group col-4 text-start"> <!-- Input Dia -->
+            <label class="fs-5" for="dia">Dia:</label>
+            <input 
+            type="text" 
+            id="dia" 
+            class="form-control" 
+            placeholder="Dia" 
+            aria-label="dia"
+            formControlName="dia">
 
-    </div>
+            <!-- Validação do campo -->
 
-    <div class="col-4 text-start">
-        <label class="fs-5" for="mes">Mês: </label>
-        <input type="text" id="mes" class="form-control" placeholder="Mes" aria-label="mes">
-    </div>
+            <small *ngIf="formulario.get('dia')?.valid && formulario.get('dia')?.touched" class="form-text text-success">Ok</small>
+            <small *ngIf="formulario.get('dia')?.invalid && formulario.get('dia')?.touched" class="form-text text-danger">Insira o dia de nascimeto, com dois caracteres (Exemplo: '02')</small>
+        </div> <!-- Input Dia -->
 
-    <div class="col-4 text-start">
-        <label class="fs-5" for="ano">Ano: </label>
-        <input type="text" id="ano" class="form-control" placeholder="Ano" aria-label="ano">
-    </div>
+        <div class=" form-group col-4 text-start"> <!-- Input Mês -->
+            <label class="fs-5" for="mes">Mês: </label>
+            <input 
+            type="text" 
+            id="mes" 
+            class="form-control" 
+            placeholder="Mes" 
+            aria-label="mes"
+            formControlName="mes">
 
-</div>
-<div class="mt-3 ">
-    <div class="border "></div>
-    <div class="row d-none d-sm-flex justify-content-end ">
-        <div class="col-2 justify-content-center">
-            <button class="btn btn-sm btn-primary rounded-circle ">
-                <img src="../../../assets/images/icon-arrow.svg" alt="">
-            </button>
-        </div>    
-    </div>
-    <div class="row d-flex d-sm-none justify-content-center">
-        <div class="col ">
-            <button class="btn btn-sm btn-primary rounded-circle">
-                <img src="../../../assets/images/icon-arrow.svg" alt="">
-            </button>
-        </div>    
-    </div>    
+            <small *ngIf="formulario.get('mes')?.valid && formulario.get('mes')?.touched" class="form-text text-success">Ok</small>
+            <small *ngIf="formulario.get('mes')?.invalid && formulario.get('mes')?.touched" class="form-text text-danger">Insira o mês de nascimeto, com dois caracteres (Exemplo: '04')</small>
+
+        </div> <!-- Input Mês -->
+
+        <div class=" form-group col-4 text-start">
+            <label class="fs-5" for="ano">Ano: </label>
+            <input 
+            type="text" 
+            id="ano" 
+            class="form-control" 
+            placeholder="Ano" 
+            aria-label="ano"
+            formControlName="ano">
+
+            <small *ngIf="formulario.get('ano')?.valid && formulario.get('ano')?.touched" class="form-text text-success">Ok</small>
+            <small *ngIf="formulario.get('ano')?.invalid && formulario.get('ano')?.touched" class="form-text text-danger">Insira o ano de nascimeto</small>
+
+        </div>
+
+        <div class="mt-3 "> <!-- Botão -->
+            <div class="row d-none d-sm-flex justify-content-end"><!-- Botão Desktop -->
+                <div class="col-2 justify-content-center ">
+                    <button type="submit" [disabled]= "!formulario.valid" class="btn btn-sm btn-primary rounded-circle ">
+                        <img src="../../../assets/images/icon-arrow.svg" alt="">
+                    </button>
+                </div>    
+            </div> <!-- Botão Desktop -->
+
+            <div class="row d-flex d-sm-none justify-content-center"> <!-- Botão Mobile -->
+                <div class="col">
+                    <button type="submit" [disabled]= "!formulario.valid" class="btn btn-sm btn-primary rounded-circle">
+                        <img src="../../../assets/images/icon-arrow.svg" alt="">
+                    </button>
+                </div>    
+            </div> <!-- Botão Mobile --> 
+        </div>
+
+
+    </form>
+
+
+
 </div>
