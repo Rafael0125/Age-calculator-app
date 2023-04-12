@@ -20,22 +20,76 @@ export class FormDataNacimentoComponent implements OnInit{
 
   public testeData:any = Date()
 
-  constructor(){ }
+  letructor(){ }
 
   ngOnInit(): void { }
 
   public recuperarIdade():void{
 
 
-    let data1 = moment()
-
-    console.log(data1)
 
 
 
+
+    // data do formulário (string)
+    let dataFormulario =  `${this.formulario.value.ano}/${this.formulario.value.mes}/${this.formulario.value.dia}`;
+
+    // converter para objeto Date
+    let data = new Date(dataFormulario);
+
+    // data atual
+    let dataAtual = new Date();
+
+    // calcular a diferença em milissegundos
+    let diferencaMs = dataAtual.getTime() - data.getTime();
+
+
+
+
+    // converter para dias
+    let diferencaDias = Math.floor(diferencaMs / (1000 * 60 * 60 * 24));
+
+    if(diferencaDias > 31){
+      console.log(diferencaDias)
+      diferencaDias = diferencaDias / 31
+      //console.log(diferencaDias)
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    // calcular a diferença em meses
+    let diferencaMeses = (dataAtual.getFullYear() - data.getFullYear()) * 12 + (dataAtual.getMonth() - data.getMonth());
+
+    // calcular a diferença em anos
+    let diferencaAnos = Math.floor((dataAtual.getTime() - data.getTime()) / (1000 * 60 * 60 * 24 * 365));
+
+
+    console.log(`A diferença entre ${dataFormulario} e ${dataAtual.toISOString().substr(0, 10)} é de ${diferencaDias} dias.`);
+
+    console.log('-------------------------------------')
+
+    console.log(`A diferença entre ${dataFormulario} e ${dataAtual.toISOString().substr(0, 10)} é de ${diferencaMeses} meses.`);
+
+    console.log('-------------------------------------')
+
+    console.log(`A diferença entre ${dataFormulario} e ${dataAtual.toISOString().substr(0, 10)} é de ${diferencaAnos} anos.`);
 
 
   }
+
+  
+
+  
 
 
 
